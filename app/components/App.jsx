@@ -1,13 +1,20 @@
 import React from 'react';
 import './../assets/scss/main.scss';
 
+import './Cabecera'
+import Cabecera from "./Cabecera";
+import './Tablero'
+import Tablero from "./Tablero";
 
 
+const JUGADORX = "jugador 1 - las X";
+const JUGADOR0 = "jugador 2 - los 0";
 export default class App extends React.Component {
 
   constructor(promps){
     super(promps);
     this.state={
+          turno: JUGADORX,
           valores: [
               ['-','-','-'],
               ['-','-','-'],
@@ -17,24 +24,12 @@ export default class App extends React.Component {
   }
 
   render() {
-    let tablero = this.state.valores.map((valoresFila,indiceFila)=>{
 
-      let fila = valoresFila.map((valor,indiceColumna)=>{
-        let myKey = ""+indiceFila+indiceColumna;
-
-        return(
-          <span key={myKey} >{valor}</span>
-        );
-      });
-      return(
-          <div key={"fila"+indiceFila}>{fila}</div>
-      )
-
-    });
+    let texto = "El turno es para el "+this.state.turno;
     return(
         <div>
-          <h2>Tres En Raya</h2>
-           <p>{tablero}</p>
+          <Cabecera texto={texto}/>
+           <Tablero valores={this.state.valores}/>
         </div>
     );
   }
