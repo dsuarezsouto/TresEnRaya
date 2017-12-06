@@ -19,9 +19,12 @@ export default class App extends React.Component {
               ['-','-','-'],
               ['-','-','-'],
               ['-','-','-']
-          ]
+          ],
+          movimientos:0
     };
-    this.appClick= this.appClick.bind(this)
+    this.appClick= this.appClick.bind(this);
+    this.resetClick= this.resetClick.bind(this)
+
   }
 
   appClick(indiceFila,indiceColumna){
@@ -33,20 +36,35 @@ export default class App extends React.Component {
     this.setState(
         {
             turno: this.state.turno === JUGADORX ? JUGADOR0:JUGADORX,
-            valores:nuevosValores
+            valores:nuevosValores,
+            movimientos: this.state.movimientos + 1
         }
     )
 
 
   }
+  resetClick(){
+
+    this.setState({
+        turno: JUGADORX,
+        valores: [
+            ['-','-','-'],
+            ['-','-','-'],
+            ['-','-','-']
+        ],
+        movimientos:0
+    })
+  }
 
   render() {
 
-    let texto = "El turno es para el "+this.state.turno;
+    let texto = "El turno es para el "+this.state.turno+".";
     return(
         <div>
           <Cabecera texto={texto}/>
-           <Tablero valores={this.state.valores} appClick={this.appClick}/>
+          <Tablero valores={this.state.valores} appClick={this.appClick}/>
+          <h3> Nº de movimientos: {this.state.movimientos}</h3>
+          <button onClick={this.resetClick}>Reset</button>
         </div>
     );
   }

@@ -14,7 +14,9 @@ export default class Casilla extends React.Component {
 
     }
     casillaClick(){
-        this.props.tableroClick(this.props.indiceFila,this.props.indiceColumna)
+        if(this.props.valor =='-'){
+            this.props.tableroClick(this.props.indiceFila,this.props.indiceColumna)
+        }
     }
     render() {
         return (
