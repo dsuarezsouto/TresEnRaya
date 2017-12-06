@@ -1,10 +1,8 @@
 import React from 'react';
 import './../assets/scss/main.scss';
 
-const styleCasilla={
-    height:'100 px',
-    width:'100 px'
-};
+import './Casilla'
+import Casilla from "./Casilla";
 export default class Tablero extends React.Component {
     render() {
         let tablero = this.props.valores.map((valoresFila, indiceFila) => {
@@ -13,7 +11,7 @@ export default class Tablero extends React.Component {
                 let myKey = "" + indiceFila + indiceColumna;
 
                 return (
-                    <button style={styleCasilla} key={myKey}>{valor}</button>
+                    <Casilla myKey={myKey} valor={valor}/>
                 );
             });
             return (
