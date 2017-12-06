@@ -8,9 +8,17 @@ const styleCasilla={
     width:'100 px'
 };
 export default class Casilla extends React.Component {
+    constructor(props){
+        super(props)
+        this.casillaClick= this.casillaClick.bind(this)
+
+    }
+    casillaClick(){
+        this.props.tableroClick(this.props.indiceFila,this.props.indiceColumna)
+    }
     render() {
         return (
-            <button style={styleCasilla} key={this.props.myKey}>{this.props.valor}</button>
+            <button style={styleCasilla} className={this.props.valor === '-' ? "clickable":"noClickable"} onClick={this.casillaClick}>{this.props.valor}</button>
         )
     }
 }

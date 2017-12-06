@@ -7,3 +7,10 @@ body {
 h2{
 	color: red;
 }
+.clickable{
+  cursor: pointer;
+}
+
+.noClickable{
+  cursor: not-allowed;
+}

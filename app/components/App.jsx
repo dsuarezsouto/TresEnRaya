@@ -11,8 +11,8 @@ const JUGADORX = "jugador 1 - las X";
 const JUGADOR0 = "jugador 2 - los 0";
 export default class App extends React.Component {
 
-  constructor(promps){
-    super(promps);
+  constructor(props){
+    super(props);
     this.state={
           turno: JUGADORX,
           valores: [
@@ -21,6 +21,23 @@ export default class App extends React.Component {
               ['-','-','-']
           ]
     };
+    this.appClick= this.appClick.bind(this)
+  }
+
+  appClick(indiceFila,indiceColumna){
+    let nuevosValores=this.state.valores;
+    let valor = this.state.turno === JUGADORX ? 'X' : '0';
+
+    nuevosValores[indiceFila][indiceColumna] = valor;
+
+    this.setState(
+        {
+            turno: this.state.turno === JUGADORX ? JUGADOR0:JUGADORX,
+            valores:nuevosValores
+        }
+    )
+
+
   }
 
   render() {
@@ -29,7 +46,7 @@ export default class App extends React.Component {
     return(
         <div>
           <Cabecera texto={texto}/>
-           <Tablero valores={this.state.valores}/>
+           <Tablero valores={this.state.valores} appClick={this.appClick}/>
         </div>
     );
   }
